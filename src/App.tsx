@@ -9,12 +9,13 @@ import {
   WEATHER_API_URL,
 } from "./api/api";
 import { IChoosenCity } from "./interfaces/interfaces";
+import { prepareData } from "./utils/prepareData";
 
 function App() {
   const [choosenCity, setChoosenCity] = useState<IChoosenCity | null>();
   const [forecast, setForecast] = useState(null);
 
-  console.log(forecast);
+  prepareData(forecast);
 
   const handleOnChange = (searchData: IChoosenCity | null) => {
     if (searchData !== null) {
@@ -33,9 +34,9 @@ function App() {
   };
 
   const loadOptions = (choosenCity: string) => {
-    /* minPopulation=1000000& added to reduce complexity/workload */
+    /* minPopulation=100000& added to reduce complexity/workload */
     return fetch(
-      `${GEO_API_URL}/cities?minPopulation=1000000&namePrefix=${choosenCity}`,
+      `${GEO_API_URL}/cities?minPopulation=100000&namePrefix=${choosenCity}`,
       geoApiOptions
     )
       .then((response) => response.json())
