@@ -11,25 +11,5 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.input-block {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-input {
-  min-width: 300px;
-  min-height: 20px;
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-button {
-  margin-right: 1rem;
-  border-radius: 0.5rem;
-  font-size: medium;
-  width: 60px;
+  padding-bottom: 20px;
 }
