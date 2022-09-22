@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Main } from "./components/main/main.page";
+import { Weather } from "./components/weather/weather.page";
 import { AsyncPaginate } from "react-select-async-paginate";
 import {
   geoApiOptions,
@@ -8,14 +8,18 @@ import {
   WEATHER_API_KEY,
   WEATHER_API_URL,
 } from "./api/api";
-import { IChoosenCity } from "./interfaces/interfaces";
+import { IChoosenCity, IPreparedDataItem } from "./interfaces/interfaces";
 import { prepareData } from "./utils/prepareData";
+import { Conclusion } from "./components/conclusion/conclusion";
 
 function App() {
   const [choosenCity, setChoosenCity] = useState<IChoosenCity | null>();
   const [forecast, setForecast] = useState(null);
 
-  prepareData(forecast);
+  let data = null;
+  if (forecast) {
+    data = prepareData(forecast);
+  }
 
   const handleOnChange = (searchData: IChoosenCity | null) => {
     if (searchData !== null) {
@@ -49,9 +53,6 @@ function App() {
         });
         return { options: options };
       });
-    // .catch((error) => {
-    //   console.log(error);
-    // });
   };
 
   const customStyles = {
@@ -81,10 +82,15 @@ function App() {
           loadOptions={loadOptions}
         />
       </header>
-
-      {/* {forecast && <Forecast data={forecast} />} */}
-
-      <Main choosenCity={choosenCity as IChoosenCity} />
+      <Weather data={data as Array<IPreparedDataItem>} />
+      <h3>
+        You can sell umbrellas on rainy days / You can sell jackets on days with
+        temperature is under 18&#8451;
+      </h3>
+      <Conclusion
+        choosenCity={choosenCity as IChoosenCity}
+        data={data as Array<IPreparedDataItem>}
+      />
     </div>
   );
 }
