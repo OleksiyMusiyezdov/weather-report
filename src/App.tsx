@@ -38,9 +38,8 @@ function App() {
   };
 
   const loadOptions = (choosenCity: string) => {
-    /* minPopulation=100000& added to reduce complexity/workload */
     return fetch(
-      `${GEO_API_URL}/cities?minPopulation=100000&namePrefix=${choosenCity}`,
+      `${GEO_API_URL}/cities?namePrefix=${choosenCity}`,
       geoApiOptions
     )
       .then((response) => response.json())
@@ -84,8 +83,8 @@ function App() {
       </header>
       <Weather data={data as Array<IPreparedDataItem>} />
       <h3>
-        You can sell umbrellas on rainy days / You can sell jackets on days with
-        temperature is under 18&#8451;
+        You can sell umbrellas on rainy days or tomorrow / You can sell jackets
+        on days when temperature is under 18&#8451; or tomorrow
       </h3>
       <Conclusion
         choosenCity={choosenCity as IChoosenCity}
