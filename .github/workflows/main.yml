@@ -15,13 +15,9 @@ jobs:
         with:
           name: build
           path: build-files
-  deploy_application:
-    needs: build_application
-    runs-on: ubuntu-latest
-    steps:
       - name: Get build
         uses: actions/download-artifact@v3
         with:
           name: build-files
-      - name: Build application
-        run: npm run build
+      - name: Start application
+        run: npm run start
