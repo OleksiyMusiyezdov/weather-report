@@ -1,9 +1,8 @@
 name: Weather Workflow
 on: workflow_dispatch
 jobs:
-  print:
+  start-application:
     runs-on: ubuntu-latest
     steps:
-    - uses: ./../
     - name: Run the weather
       run: npm start
