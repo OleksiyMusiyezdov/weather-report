@@ -4,6 +4,6 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-    - uses: ../../
+    - uses: ./../
     - name: Run the weather
       run: npm start
