@@ -1,9 +1,12 @@
 name: Weather Workflow
 on: workflow_dispatch
 jobs:
-  start-application:
+  run_application:
     runs-on: ubuntu-latest
     steps:
-    - name: Run the app
-      run: npm start
-      working-directory: /home/runner/work/weather-report/weather-report/
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Install dependancies
+        run: npm install
+      - name: Run application
+        run: npm run start
