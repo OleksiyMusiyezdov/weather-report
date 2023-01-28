@@ -14,10 +14,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: build-files
+          path: build
       - name: Get build
         uses: actions/download-artifact@v3
         with:
-          name: build-files
+          name: build
       - name: Start application
         run: npm run start
