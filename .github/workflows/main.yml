@@ -4,5 +4,7 @@ jobs:
   start-application:
     runs-on: ubuntu-latest
     steps:
-    - name: Run the weather
+    - name: Indicate the directory
+      uses: ./
+    - name: Run the app
       run: npm start
