@@ -4,5 +4,7 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
+    - name: Change directory
+      run: cd ../../
     - name: Run the weather
       run: npm start
