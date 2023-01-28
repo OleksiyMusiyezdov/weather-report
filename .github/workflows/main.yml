@@ -1,12 +1,27 @@
 name: Weather Workflow
 on: workflow_dispatch
 jobs:
-  run_application:
+  build_application:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
       - name: Install dependancies
         run: npm install
-      - name: Run application
-        run: npm run start
+      - name: Build application
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build-files
+  deploy_application:
+    needs: build_application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
+      - name: Build application
+        run: npm run build
